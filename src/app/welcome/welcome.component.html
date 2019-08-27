@@ -1,14 +1,26 @@
-<mat-card>
+<div class="card-stand">
+  <mat-card>
     <mat-card-header>
-  
+      <h2><img src="../../assets/images/ScatterPlot.svg" /> Quiz</h2>
     </mat-card-header>
-   
+
     <mat-card-content>
-   
+      <div class="row" style="text-align:center;">
+        <h4>Welcome <b>User</b>,</h4>
+        <br />
+        <u>Read the instructions carefully</u>
+        <br/>
+        <p>Each question is a multiple-choice question with four answer choices. Read each question and answer choice carefully and choose the ONE best answer.</p>
+
+      </div>
     </mat-card-content>
 
-    <mat-card-actions align="right">
-        <button mat-raised-button (click)="startQuiz()" type="button">Start the Quiz</button>
+    <mat-card-actions class="action">
+      <button mat-raised-button color="accent" (click)="startQuiz()" type="button">
+        Start the Quiz
+      </button>
     </mat-card-actions>
-</mat-card>
-
+    <mat-card-footer>
+    </mat-card-footer>
+  </mat-card>
+</div>

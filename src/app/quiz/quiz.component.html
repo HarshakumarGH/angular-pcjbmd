@@ -1,39 +1,48 @@
-<mat-card *ngIf="questions$|async as questions">
+<div class="card-stand">
+  <mat-card *ngIf="questions|async as question">
     <ng-container *ngIf="currentQuestion < questionCount; else quiz_results">
-        <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>Super Duper Quiz</mat-card-title>
-            <mat-card-subtitle *ngIf="currentQuestion < questionCount; else quiz_finished">Question {{currentQuestion + 1}} of {{questionCount}}</mat-card-subtitle>
-            <ng-template #quiz_finished><mat-card-subtitle>Quiz Complete</mat-card-subtitle></ng-template>
-        </mat-card-header>
-        <form #questionForm="ngForm">
-            <mat-card-content>
-                <mat-progress-bar class="mat-elevation-z8" [value]="progressValue"></mat-progress-bar>
-                <h4>{{questions['quiz-questions'][currentQuestion].question}}</h4>
-                <mat-radio-group name="selectedOption" required [(ngModel)]="selectedOption">
-                    <mat-radio-button [value]="i" *ngFor="let option of questions['quiz-questions'][currentQuestion].options; let i = index" >{{option}}</mat-radio-button>
-                </mat-radio-group>
-            </mat-card-content>
-            <mat-card-actions>
-                <button type="button" mat-raised-button [disabled]="!questionForm.valid" (click)="nextQuestion(questions['quiz-questions'][currentQuestion].answer)">Next</button>
-            </mat-card-actions>
-        </form>
+      <mat-card-header>
+        <mat-card-title><h2><img src="../../assets/images/ScatterPlot.svg" /> Quiz</h2></mat-card-title>
+        <mat-card-subtitle *ngIf="currentQuestion < questionCount; else quiz_finished">Question {{currentQuestion + 1}} of {{questionCount}}</mat-card-subtitle>
+        <ng-template #quiz_finished>
+          <mat-card-subtitle>Quiz Complete</mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+      <form #questionForm="ngForm">
+        <mat-card-content>
+          <div class="row">
+            <mat-progress-bar color="accent" class="mat-elevation-z8" [value]="progressValue"></mat-progress-bar>
+            <h4>{{question['questions'][currentQuestion].question}}</h4>
+            <mat-radio-group name="selectedOption" required [(ngModel)]="selectedOption">
+              <mat-radio-button [value]="i" *ngFor="let option of question['questions'][currentQuestion].options; let i = index">{{option}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="action">
+          <button color="accent" type="button" mat-raised-button [disabled]="!questionForm.valid" (click)="nextQuestion(question['questions'][currentQuestion].answer)">{{buttonText}}</button>
+        </mat-card-actions>
+      </form>
     </ng-container>
+
+
     <ng-template #quiz_results>
         <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>Super Duper Quiz</mat-card-title>
-            <mat-card-subtitle>Results</mat-card-subtitle>
+          <mat-card-title><h2><img src="../../assets/images/ScatterPlot.svg"/>Quiz </h2></mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
         </mat-card-header>
-        <img *ngIf="correctCount > 2; else try_again" mat-card-image [src]="CONGRATULATIONS" alt="Photo of congratulations">
-        <ng-template #try_again>
-            <img mat-card-image [src]="TRY_AGAIN" alt="Photo of Try again">
-        </ng-template>
-        <mat-card-content>
-            <h4>You got {{correctCount}} correct of {{questions['quiz-questions'].length}} questions.</h4>
+
+        <mat-card-content >
+          <div class="row result-content">
+            <h3>Result</h3>
+            <h4>You got {{correctCount}} correct of {{question['questions'].length}} questions.</h4>
+
+          </div>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button type="button" routerLink="home">Try Again</button>
+        <mat-card-actions class="result-action">
+          <button mat-raised-button type="button"  color="accent" (click)="restartTest()">Start Again</button>
+          <button mat-raised-button type="button" color="accent" routerLink="welcome">Exit</button>
         </mat-card-actions>
+ 
     </ng-template>
-</mat-card>
+  </mat-card>
+</div>

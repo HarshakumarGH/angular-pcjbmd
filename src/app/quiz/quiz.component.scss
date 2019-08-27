@@ -1,0 +1,41 @@
+
+.mat-card {
+  height: 500px;
+  max-width: 640px;
+}
+
+.mat-raised-button {
+  margin: 0 10px;
+}
+
+.mat-radio-group {
+  margin: 10px 0
+}
+
+.mat-radio-button {
+  margin: 20px 16px;
+}
+
+.mat-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-progress-bar {
+  border: solid 2px black;
+  margin: 10px 0;
+}
+.action {
+  padding-top: 10%;
+  text-align: end;
+}
+
+.result-action {
+  padding-top: 10%;
+  text-align: center;
+}
+
+.result-content {
+  text-align: center;
+  padding-top: 10%
+}
